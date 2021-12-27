@@ -1,0 +1,2 @@
+;;; Generated package description from cloud-to-butt-erc.el  -*- no-byte-compile: t -*-
+(define-package "cloud-to-butt-erc" "20130627.2308" "Replace 'the cloud' with 'my butt'" 'nil :commit "6710c03d1bc91736435cbfe845924940cae34e5c" :authors '(("David Leatherman" . "leathekd@gmail.com")) :maintainer '("David Leatherman" . "leathekd@gmail.com") :url "http://www.github.com/leathekd/cloud-to-butt-erc")

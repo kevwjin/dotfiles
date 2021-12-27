@@ -5,6 +5,7 @@
 ; activate packages
 (package-initialize)
 
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
 
@@ -29,6 +30,10 @@
       org-src-strip-leading-and-trailing-blank-lines t
       org-src-preserve-indentation t
       org-src-tab-acts-natively t)
+
+;; permanently set tab width to 4 spaces
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
 
 ;; expands snippets (e.g. code block)
 (require 'org-tempo)
@@ -64,30 +69,20 @@
 (toggle-scroll-bar -1)
 
 ;; remove bell sound
-(setq visible-bell t) 
+(setq ring-bell-function (lambda ()))
 
 ;; relative line numbers
 (menu-bar-display-line-numbers-mode 'relative)
 (add-hook 'foo-mode-hook #'display-line-numbers-mode)
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
-
-;; disable electric-indent-mode
-;; (electric-indent-mode -1)
-
-;; activate aggressive-indent mode
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-(add-hook 'css-mode-hook #'aggressive-indent-mode)
-(global-aggressive-indent-mode 1)
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(aggressive-indent linum-relative use-package twilight-bright-theme org-autolist org-agenda-property nlinum-relative evil-org cloud-to-butt-erc cloud-theme base16-theme apropospriate-theme)))
+ '(custom-safe-themes
+   '("76b4632612953d1a8976d983c4fdf5c3af92d216e2f87ce2b0726a1f37606158" "0cb3fb0a9af57618f38b61e61057b05f58a5bafc655e22dee1356e79d331b3c1" "0f11d0be0d81c7cd3f5fe4d8c01e32e53b83eea3aa33b0bf574aff0abb6cebc2" default)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

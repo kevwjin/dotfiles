@@ -26,11 +26,11 @@ colorscheme papercolor
 set number
 set relativenumber
 " indenting 
-set tabstop=4
+set tabstop=2
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
-set softtabstop=4
+set softtabstop=2
 " copy and paste to and from Vim
 set clipboard=unnamed
 " remove error bells
@@ -85,6 +85,9 @@ set noswapfile
 set signcolumn=yes
 " Remove highlight search
 set nohlsearch
+" Allow j and k commands to navigate soft-wrapped lines without 'g'
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 " --- general settings ---
 
 " --- fzf settings ---
