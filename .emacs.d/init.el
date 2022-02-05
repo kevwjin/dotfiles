@@ -33,7 +33,7 @@
 
 ;; permanently set tab width to 4 spaces
 (setq-default indent-tabs-mode nil)
-(setq tab-width 4)
+(setq tab-width 2)
 
 ;; expands snippets (e.g. code block)
 (require 'org-tempo)

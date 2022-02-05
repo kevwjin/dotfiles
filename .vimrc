@@ -9,10 +9,40 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'vimwiki/vimwiki'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'chriskempson/base16-vim'
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-orgmode/orgmode'
 call plug#end()
 " --- vim-plug settings ---
 
 " --- general settings ---
+" nvim-orgmode settings
+" init.vim
+lua << EOF
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.org = {
+  install_info = {
+    url = 'https://github.com/milisims/tree-sitter-org',
+    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
+    files = {'src/parser.c', 'src/scanner.cc'},
+  },
+  filetype = 'org',
+}
+
+require'nvim-treesitter.configs'.setup {
+  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
+  highlight = {
+    enable = true,
+    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
+    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
+  },
+  ensure_installed = {'org'}, -- Or run :TSUpdate org
+}
+
+require('orgmode').setup({
+  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  org_default_notes_file = '~/Dropbox/org/refile.org',
+})
+EOF
 " vimwiki required settings
 set nocompatible
 filetype plugin on
@@ -43,6 +73,8 @@ set undodir=~/.vim/undodir
 set undofile
 " begin search as you type
 set incsearch
+" case sensitive when there are uppercase in search
+set smartcase
 " disables auto comments after newline of original comment
 autocmd FileType c,java inoreabbrev <buffer> /** /**<CR>/<Up>
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
