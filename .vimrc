@@ -1,51 +1,21 @@
-" --- vim-plug settings ---
+" -- vim-plug ------------------------------------------------------------------
+
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
-Plug 'dense-analysis/ale'
 Plug 'tpope/vim-dispatch'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'vimwiki/vimwiki'
 Plug 'cormacrelf/vim-colors-github'
 Plug 'chriskempson/base16-vim'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-orgmode/orgmode'
 call plug#end()
-" --- vim-plug settings ---
 
-" --- general settings ---
-" nvim-orgmode settings
-" init.vim
-lua << EOF
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.org = {
-  install_info = {
-    url = 'https://github.com/milisims/tree-sitter-org',
-    revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
-    files = {'src/parser.c', 'src/scanner.cc'},
-  },
-  filetype = 'org',
-}
+" -- general -------------------------------------------------------------------
 
-require'nvim-treesitter.configs'.setup {
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    disable = {'org'}, -- Remove this to use TS highlighter for some of the highlights (Experimental)
-    additional_vim_regex_highlighting = {'org'}, -- Required since TS highlighter doesn't support all syntax features (conceal)
-  },
-  ensure_installed = {'org'}, -- Or run :TSUpdate org
-}
-
-require('orgmode').setup({
-  org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-  org_default_notes_file = '~/Dropbox/org/refile.org',
-})
-EOF
 " vimwiki required settings
 set nocompatible
-filetype plugin on
+:filetype plugin on
 syntax on
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
@@ -71,13 +41,15 @@ set belloff=all
 set nobackup
 set undodir=~/.vim/undodir
 set undofile
-" begin search as you type
+" search as you type
 set incsearch
-" case sensitive when there are uppercase in search
+" remove highlight search
+set nohlsearch
+" search case sensitive when there are uppercase letters
 set smartcase
 " disables auto comments after newline of original comment
 autocmd FileType c,java inoreabbrev <buffer> /** /**<CR>/<Up>
-" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " natural splits
 set splitbelow
 set splitright
@@ -106,24 +78,22 @@ function! s:CloseBracket()
     endif
 endfunction
 inoremap <expr> {<Enter> <SID>CloseBracket()
-" Reformat file and retain current position
+" reformat file and retain current position
 nnoremap g= mmgg=G`m
 set backspace=indent,eol,start
-" Shows the file name in the title bar
+" shows the file name in the title bar
 set title
-" Remove swp files
+" remove swp files
 set noswapfile
-" Always show sign column
-set signcolumn=yes
-" Remove highlight search
-set nohlsearch
+" always show sign column
+" set signcolumn=yes
 " Allow j and k commands to navigate soft-wrapped lines without 'g'
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
-" --- general settings ---
 
-" --- fzf settings ---
-" Default fzf layout
+" --- fzf ----------------------------------------------------------------------
+
+" default fzf layout
 " - Popup window
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:fzf_colors =
@@ -140,13 +110,14 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-" --- fzf settings ---
 
-" --- template settings ---
+" --- template -----------------------------------------------------------------
+
 autocmd BufNewFile *.cpp 0r ~/.vim/templates/skeleton.cpp
-" --- template settings ---
+autocmd BufNewFile *.md 0r ~/.vim/templates/skeleton.md
 
-" --- compile run settings ---
+" --- compile run settings -----------------------------------------------------
+
 " <leader>m to test for errors
 " <leader>n to show output
 " Java
@@ -183,4 +154,3 @@ command! -nargs=1 CompileAndRunWithFile call TermWrapper(printf('g++ -std=c++11 
 autocmd FileType cpp nnoremap <leader>r :w<bar>:CompileAndRun<CR>
 
 let g:split_term_style = 'horizontal'
-" --- compile run settings ---
