@@ -1,5 +1,0 @@
-[".ssh/id_ed25519"]
-    type = "file"
-    url = "bitwarden:2c1297c8-6612-4341-bb96-b26400aa04d1"
-    executable = false
-    filter = ["chmod", "600"]
