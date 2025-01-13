@@ -34,6 +34,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 # aliases
+alias cm='chezmoi'
 alias nv='nvim'
 alias gs='git status'
 alias ga='git add'
