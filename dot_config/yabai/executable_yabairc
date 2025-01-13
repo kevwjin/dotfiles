@@ -1,0 +1,103 @@
+#!/usr/bin/env sh
+
+# docs describing each option:
+# man yabai
+# OR
+# https://github.com/koekeishiya/yabai/blob/master/doc/yabai.asciidoc#display
+
+# if yabai keybinds no longer work, visit the following URL:
+# https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+# your sh256 hash of the yabai binary may need to updated if you recently ran `brew upgrade`
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# -- config --------------------------------------------------------------------
+
+# global settings
+# spacing for sketchybar
+# yabai -m config external_bar all:14:0
+yabai -m config window_shadow on
+# toggle shadows when a window is created for system prefs or preview
+# yabai -m signal --add event=window_created app='^(iTerm2)$' \
+#     action='yabai -m window "${YABAI_WINDOW_ID}" --toggle shadow'
+# toggle shadows for all existing system prefs or preview windows when yabai launches
+# yabai -m query --windows \
+#     | jq '.[] | select(.shadow == 0 and (.app == "iTerm2")).id' \
+#     | xargs -I{} yabai -m window {} --toggle shadow
+# yabai -m config window_shadow off
+# yabai -m rule --add label="DefaultShadow" app=".*" shadow=on
+# yabai -m rule --add label="iTerm" app="iTerm2" shadow=off
+# yabai -m config window_shadow on
+# yabai -m config window_shadow on
+# I found opacity to be a bit distracting.
+# yabai -m config window_opacity off
+yabai -m config window_opacity_duration 0.0
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 1.0
+yabai -m config window_animation_duration 0.0
+yabai -m config split_ratio 0.5
+yabai -m config split_type auto
+yabai -m config mouse_modifier fn
+yabai -m config mouse_action1 resize
+yabai -m config mouse_drop_action swap
+yabai -m window --focus "$(yabai -m query --windows --window | jq -er .id)"
+yabai -m config window_zoom_persist off
+
+# space settings
+# yabai -m config layout                      bsp
+# yabai -m config top_padding                 26
+# yabai -m config bottom_padding              26
+# yabai -m config left_padding                26
+# yabai -m config right_padding               26
+# yabai -m config window_gap                  18
+
+# yabai -m config layout                      bsp
+# yabai -m config top_padding                 40
+# yabai -m config bottom_padding              28 
+# yabai -m config left_padding                28 
+# yabai -m config right_padding               28 
+# yabai -m config window_gap                  28 
+
+yabai -m config layout                      bsp
+yabai -m config top_padding                 10
+yabai -m config bottom_padding              10
+yabai -m config left_padding                10 
+yabai -m config right_padding               10 
+yabai -m config window_gap                  10 
+
+# -- space ---------------------------------------------------------------------
+
+# ===== Rules ==================================
+
+# Don't manage apps by default
+yabai -m rule --add app=".*" manage=off
+# List managed apps
+yabai -m rule --add label="Firefox" app="^Firefox$" manage=on
+yabai -m rule --add label="iTerm" app="^iTerm2$" manage=on
+
+yabai -m rule --add label="Arc" app="^Arc$" manage=on
+yabai -m rule --add label="Ghostty" app="^Ghostty$" manage=on
+yabai -m rule --add label="Obsidian" app="^Obsidian$" manage=on
+yabai -m rule --add label="Reeder" app="^Reeder$" manage=on
+yabai -m rule --add label="Discord" app="^Discord$" manage=on
+yabai -m rule --add label="Messenger" app="^Messenger$" manage=on
+yabai -m rule --add label="Messages" app="^Messages$" manage=on
+yabai -m rule --add label="Zoom" app="^zoom.us$" manage=on
+
+
+# ===== Signals ================================
+
+# borders inactive_color=0xff5f8787 active_color=0xffd75f00 width=8.0 2>/dev/null 1>&2 &
+
+# Signal sketchybar when window zoom state changes
+yabai -m signal --add event=window_resized action="sketchybar --trigger window_changed"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger window_changed"
+yabai -m signal --add event=space_changed action="sketchybar --trigger window_changed"
+
+# ===== Loading Scripting Additions ============
+
+# See: https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#macos-big-sur---automatically-load-scripting-addition-on-startup
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
