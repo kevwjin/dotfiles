@@ -42,6 +42,3 @@ alias gp='git push'
 alias gl='git log'
 alias gd='git diff'
 alias python='python3'
-
-# set stow dir
-export STOW_DIR="$HOME/stow"
