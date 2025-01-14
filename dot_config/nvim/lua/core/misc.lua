@@ -4,6 +4,9 @@ vim.g.mapleader = ','
 -- remove netrw banner
 vim.g.netrw_banner = 0
 
+-- set floating window background color
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = '#eeeeee' })
+
 -- enable gutter
 vim.opt.signcolumn = 'yes'
 -- draw vertical line at 80th column
