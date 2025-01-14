@@ -2,4 +2,7 @@
 Library/
 Library/**
 {{ end -}}
+{{ if ne .chezmoi.os "linux" -}}
+.hushlogin
+{{ end -}}
 LICENSE
