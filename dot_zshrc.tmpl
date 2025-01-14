@@ -19,8 +19,10 @@ source $ZSH/oh-my-zsh.sh
 # enable colorized output for terminal commands (e.g., ls)
 export CLICOLOR=1
 export LS_COLORS='di=1;96:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+{{ if eq .chezmoi.os "darwin" -}}
 # Use GNU ls instead of BSD ls to folow LS_COLORS instead of LSCOLORS
 alias ls='gls --color=auto'
+{{ end -}}
 # set Emacs bindings for command line
 bindkey -e
 
