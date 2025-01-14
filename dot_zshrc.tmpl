@@ -1,13 +1,5 @@
-# direnv and p10k
+# direnv
 emulate zsh -c "$(direnv export zsh)"
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-if [ -z "$SSH_AUTH_SOCK" ]; then
-    eval "$(ssh-agent -s)" > /dev/null
-    eval $(keychain --eval --quiet ~/stow/server/dot-ssh/kevwjin)
-    # ssh-add -k ~/.ssh/kevwjin 2>/dev/null
-fi
 emulate zsh -c "$(direnv hook zsh)"
 
 # zsh theme
