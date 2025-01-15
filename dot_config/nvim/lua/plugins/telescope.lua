@@ -10,6 +10,11 @@ return {
     telescope.setup({
       defaults = {
         path_display = { 'smart' },
+        borderchars = {
+          prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└"},
+          results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
       }
     })
     telescope.load_extension('fzf')
