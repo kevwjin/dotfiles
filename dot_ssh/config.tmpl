@@ -1,10 +1,12 @@
 Host github.com-kevwjin github account
-   HostName github.com
-   User git
-   IdentityFile ~/.ssh/id_ed25519
+    HostName github.com
+    User git
+    IdentityFile ~/.ssh/id_ed25519
 {{ if eq .chezmoi.os "darwin" -}}
 Host server
     HostName 100.86.215.68
     User kevwjin
     Port 22
+    # ghostty-256 or something not supported on Ubuntu server
+    SetEnv TERM=xterm-256color
 {{ end -}}
