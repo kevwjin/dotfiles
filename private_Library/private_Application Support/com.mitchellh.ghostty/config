@@ -20,7 +20,6 @@ cursor-color = #00bbd3
 selection-background = #d0d0d0
 selection-foreground = #616060
 
-command = ./ghostty-tmux-start.sh
 copy-on-select = true
 cursor-style = block
 cursor-style-blink = false
