@@ -1,1 +1,1 @@
-{{ (index (bitwarden "item" "DotfileSecrets").fields 1).value }}
+{{ (index (bitwarden "item" "DotfileSecrets").fields 1).value | replace "\\n" "\n" }}
