@@ -31,14 +31,23 @@ export VISUAL='nvim'
 alias cm='chezmoi'
 alias nv='nvim'
 alias g='git'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gb='git branch'
-alias gpsh='git push'
-alias gpll='git pull'
-alias gl='git log'
-alias gd='git diff'
 alias python='python3'
 # command combining cd and ls
 cl() { cd "$@" && ls; }
+
+# check remote changes to dotfiles
+function check_dotfile_updates() {
+    PREV_DIR=$(pwd)
+    cd $HOME/.local/share/chezmoi
+    git fetch --quiet origin
+    
+    # check if we're behind the remote
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse @{u})
+
+    if [ $LOCAL != $REMOTE ]; then
+        echo "New changes to dotfiles! Run `git pull` to update."
+    fi
+    cd "$PREV_DIR"
+}
+check_git_updates
