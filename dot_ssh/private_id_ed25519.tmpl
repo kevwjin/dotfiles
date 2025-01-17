@@ -1,1 +1,1 @@
-{{ (bitwarden "item" "Private SSH Key").notes }}
+{{ (index (bitwarden "item" "DotfileSecrets").fields 1).value }}
