@@ -1,4 +1,5 @@
 #!/bin/zsh
+source $HOME/.zprofile
 while true; do
     echo -n "(1) Local or (2) Remote: "
     read -k choice
