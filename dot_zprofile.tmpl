@@ -6,7 +6,7 @@ export PATH="$PATH:/Users/kevinjin/.local/bin"
 # Created by `pipx` on 2024-12-29 22:29:01
 export PATH="$PATH:/home/kevwjin/.local/bin"
 {{ end -}}
-# check git repo status on login
+# check git repo status on login and apply updates
 function check_git_updates() {
     PREV_DIR=$(pwd)
     cd $HOME/.local/share/chezmoi
@@ -17,7 +17,10 @@ function check_git_updates() {
     REMOTE=$(git rev-parse @{u})
     
     if [ $LOCAL != $REMOTE ]; then
-        echo "New dotfiles changes! Run `git pull` to update."
+        echo "Found new dotfiles changes. Pulling and applying updates..."
+        git pull --quiet
+        chezmoi apply
+        echo "Dotfiles updated successfully!"
     fi
     cd "$PREV_DIR"
 }
