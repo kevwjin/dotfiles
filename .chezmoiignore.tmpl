@@ -1,8 +1,10 @@
 {{ if ne .chezmoi.os "darwin" -}}
 .config/tmux-startup.sh
-.ssh/authorized_keys
 Library/
 Library/**
+{{ end -}}
+{{ if ne .chezmoi.os "linux" -}}
+chezmoi source-path ~/.ssh/authorized_keys
 {{ end -}}
 .hushlogin
 LICENSE
