@@ -9,19 +9,22 @@ export PATH="$PATH:/home/kevwjin/.local/bin"
 # check git repo status on login and apply updates
 function check_git_updates() {
     PREV_DIR=$(pwd)
-    cd $HOME/.local/share/chezmoi
-    git fetch --quiet origin
-    
-    # check if we're behind the remote
-    LOCAL=$(git rev-parse @)
-    REMOTE=$(git rev-parse @{u})
-    
-    if [ $LOCAL != $REMOTE ]; then
-        echo "Found new dotfiles changes. Pulling and applying updates..."
-        git pull --quiet
-        chezmoi apply
-        echo "Dotfiles updated successfully!"
-    fi
-    cd "$PREV_DIR"
+    paths=["$HOME/.local/share/chezmoi", "$HOME/.config/nix"]
+    for path in "${paths[@]}"
+    do
+      git fetch --quiet origin
+      
+      # check if we're behind the remote
+      LOCAL=$(git rev-parse @)
+      REMOTE=$(git rev-parse @{u})
+      
+      if [ $LOCAL != $REMOTE ]; then
+          echo "Found new config changes. Pulling and applying updates..."
+          git pull --quiet
+          chezmoi apply
+          echo "Config updated successfully!"
+      fi
+      cd "$PREV_DIR"
+    done
 }
 check_git_updates
