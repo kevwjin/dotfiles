@@ -22,19 +22,18 @@ return {
     mason_lspconfig.setup({
       -- list of servers for mason to install
       ensure_installed = {
-         "astro",                            -- astro framework
-         "ts_ls",                            -- typescript/javascript
-         "cssls",                            -- css
-         "html",                             -- html
-         "bashls",                           -- bash
-         "clangd",                           -- c/c++
-         "pyright",                          -- python
-         "lua_ls",                           -- lua
-         "jdtls",                            -- java
-         "dockerls",                         -- dockerfile
-         "docker_compose_language_service",  -- docker compose
-         "ansiblels",                        -- ansible
-         "elixirls",                         -- elixir
+        "astro",                             -- astro framework
+        "ts_ls",                             -- typescript/javascript
+        "cssls",                             -- css
+        "html",                              -- html
+        "bashls",                            -- bash
+        "clangd",                            -- c/c++
+        "pyright",                           -- python
+        "lua_ls",                            -- lua
+        "jdtls",                             -- java
+        "dockerls",                          -- dockerfile
+        "docker_compose_language_service",   -- docker compose
+        "nil_ls",                            -- nix
       },
     })
   end,
