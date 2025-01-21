@@ -33,7 +33,7 @@ return {
         "jdtls",                             -- java
         "dockerls",                          -- dockerfile
         "docker_compose_language_service",   -- docker compose
-        "nil_ls",                            -- nix
+        "nil_ls",
       },
     })
   end,
