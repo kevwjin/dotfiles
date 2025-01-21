@@ -1,17 +1,15 @@
-{{ if eq .chezmoi.os "darwin" -}}
+# path used for opening tmux downloaded from nix
+export PATH="$HOME/.nix-profile/bin:$PATH"
 # Created by `pipx` on 2024-12-01 23:14:03
-export PATH="$PATH:/Users/kevinjin/.local/bin"
-{{ end -}}
-{{ if eq .chezmoi.os "linux" -}}
-# Created by `pipx` on 2024-12-29 22:29:01
-export PATH="$PATH:/home/kevwjin/.local/bin"
-{{ end -}}
+export PATH="$PATH:$HOME/.local/bin"
+
 # check git repo status on login and apply updates
 function check_git_updates() {
     PREV_DIR=$(pwd)
-    paths=["$HOME/.local/share/chezmoi", "$HOME/.config/nix"]
-    for path in "${paths[@]}"
+    REPO_PATHS=("$HOME/.local/share/chezmoi" "$HOME/.config/nix")
+    for REPO_PATH in "${REPO_PATHS[@]}"
     do
+      cd "$REPO_PATH"
       git fetch --quiet origin
       
       # check if we're behind the remote
