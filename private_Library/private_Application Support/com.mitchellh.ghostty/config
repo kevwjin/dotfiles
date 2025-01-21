@@ -28,4 +28,3 @@ font-size = 18
 shell-integration-features = no-cursor
 macos-titlebar-style = hidden
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = 0
