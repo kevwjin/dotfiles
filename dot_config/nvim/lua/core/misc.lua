@@ -1,9 +1,9 @@
 -- map leader key for telescope key mappings
 -- * leader mapping must be before require statement
 vim.g.mapleader = ','
+
 -- remove netrw banner
 vim.g.netrw_banner = 0
-
 -- set floating window background color
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
 
@@ -26,14 +26,15 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- set line wrapping
+-- vim.wo.wrap = false
 vim.wo.linebreak = true
 vim.wo.breakindent = true
 vim.wo.breakindentopt = 'shift:2'
 -- remap j and k to move through wrapped lines
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'",
-  { expr = true, silent = true })
+ { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'",
-  { expr = true, silent = true })
+ { expr = true, silent = true })
 
 -- set tab options
 vim.opt.tabstop = 2
