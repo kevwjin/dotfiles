@@ -1,0 +1,8 @@
+# path used for opening tmux downloaded from nix
+export PATH="$PATH:$HOME/.nix-profile/bin/"
+export PATH="$PATH:$HOME.local/bin"
+# terminal colors
+export TERM="xterm-256color"
+# editor (visual specifies preferred full-screen editor)
+export EDITOR='nvim'
+export VISUAL='nvim'
