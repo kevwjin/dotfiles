@@ -1,0 +1,41 @@
+if [[ -z $P10K_INSTANT_PROMPT_LOADED ]]; then
+  # setup dir env with direnv
+  emulate zsh -c "$(direnv export zsh)"
+  # prompt user while shell loading
+    # define cache path
+  CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+  [[ -r "$CACHE_FILE" ]] && source "$CACHE_FILE"
+  # enable direnv hook (e.g., when changing dir)
+  emulate zsh -c "$(direnv hook zsh)"
+fi
+
+# configure custom themes directory
+export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
+mkdir -p "$ZSH_CUSTOM/themes"
+# symlink p10k theme into $ZSH_CUSTOM/themes
+ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme)" \
+       "$ZSH_CUSTOM/themes/powerlevel10k.zsh-theme"
+# disable wizard launch on each login
+export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+# zsh theme
+ZSH_THEME="powerlevel10k"
+export ZSH="$(find /nix/store/*oh-my-zsh*/share/oh-my-zsh -maxdepth 0)"
+source "$ZSH/oh-my-zsh.sh"
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+
+# enable colorized output for terminal commands (e.g., ls)
+alias ls='ls --color=auto'
+# set Emacs bindings for command line
+bindkey -e
+
+# aliases
+alias cm='chezmoi'
+alias nv='nvim'
+alias g='git'
+# Load completion for git
+autoload -Uz compinit && compinit
+# Make git completion work with g alias
+compdef _git g=git
+alias python='python3'
+# command combining cd and ls
+cl() { cd "$@" && ls; }
