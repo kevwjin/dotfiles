@@ -2,8 +2,10 @@
 ![DotfileScreenshot2](docs/DotfileScreenshot2.png)
 
 <details>
-  <summary>See directory structure of depth 4</summary>
+  <summary>See dotfiles directory structure to depth 4</summary>
+  
 ```console
+
 ~/.local/share/chezmoi main ❯ tree . -L 4
 .
 ├── LICENSE
@@ -46,6 +48,8 @@
     └── private_Application Support
         └── com.mitchellh.ghostty
             └── config
+
+16 directories, 25 files
 ```
 </details>
 
