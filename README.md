@@ -5,9 +5,7 @@ Chezmoi (pronounced /ʃeɪ mwa/ (shay-mwa)) is used for dotfile management. Chez
 These dotfiles also include a `zoom-fullscreen` indicator powered by Yabai, Skhd, and Yabai. The Sketchybar indicator displays when any window in the workspace is in Yabai's zoom-fullscreen mode. Unlike MacOS native fullscreen, zoom-fullscreen maintains window navigation capabilities--you can switch between windows while keeping the focused window visible on top. The GIF illustrates toggling zoom-fullscreen for individual and multiple windows, as well as restoring them to normal size.
 
 &nbsp;
-<p align="center">
 <img src="SketchybarDemo.gif" height="300">
-</p>
 
 ### Event-based Syncing
 Another feature is event-based syncing with remote repositories. When opening a Zsh login shell, the zprofile config executes the following sync operations.
