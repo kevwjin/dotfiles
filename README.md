@@ -6,8 +6,8 @@ These dotfiles also include a `zoom-fullscreen` indicator powered by Yabai, Skhd
 
 &nbsp;
 <img src="SketchybarDemo.gif" height="300">
+&nbsp;
 
-### Event-based Syncing
 Another feature is event-based syncing with remote repositories. When opening a Zsh login shell, the zprofile config executes the following sync operations.
 1. `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo.
 2. `update_nix` syncs dependencies by pulling and applying changes from the [dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
