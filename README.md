@@ -1,6 +1,54 @@
 
 ![DotfileScreenshot2](docs/DotfileScreenshot2.png)
 
+<details>
+  <summary>See directory structure of depth 4</summary>
+```console
+~/.local/share/chezmoi main ❯ tree . -L 4
+.
+├── LICENSE
+├── README.md
+├── docs
+│   ├── DotfileScreenshot1.png
+│   ├── DotfileScreenshot2.png
+│   ├── LocalTmuxDemo.gif
+│   ├── RemoteTmuxDemo.gif
+│   └── SketchybarDemo.gif
+├── dot_config
+│   ├── executable_tmux-startup.sh
+│   ├── nvim
+│   │   ├── init.lua
+│   │   └── lua
+│   │       ├── config
+│   │       ├── core
+│   │       └── plugins
+│   ├── sketchybar
+│   │   ├── plugins
+│   │   │   └── executable_fullscreen_indicator.sh
+│   │   └── sketchybarrc
+│   ├── skhd
+│   │   └── skhdrc
+│   └── yabai
+│       └── executable_yabairc
+├── dot_gitconfig
+├── dot_p10k.zsh
+├── dot_ssh
+│   ├── encrypted_id_ed25519.pub.age
+│   ├── encrypted_private_authorized_keys.age
+│   ├── encrypted_private_id_ed25519.age
+│   └── private_config.tmpl
+├── dot_tmux.conf
+├── dot_zprofile
+├── dot_zshenv
+├── dot_zshrc
+├── empty_dot_hushlogin
+└── private_Library
+    └── private_Application Support
+        └── com.mitchellh.ghostty
+            └── config
+```
+</details>
+
 #### Intro
 
 This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, SketchyBar, and Ghostty), which with the exception of Yabai, Skhd, and SketchyBar, have package dependencies installable via the Nix flake in the [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
