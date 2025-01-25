@@ -27,3 +27,4 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 - [ ] Migrate the Ubuntu server to NixOS
 - [ ] Add Github Actions -> GitHub Webhook -> GitHub Fetch pipeline to fetch from GitHub repos only when they have new changes
 - [ ] Add NAS RAID10 config to server with regular backups to AWS Deep Glacier
+- [ ] Add Ansible playbook to automate install process of Yabai, Skhd, and Sketchybar with Homebrew
