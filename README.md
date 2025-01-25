@@ -89,15 +89,17 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 
 #### Per-Tool Config Files
 
-- Nvim: `dot_config/nvim/*`
-- Tmux: `dot_tmux.conf`
-- Zsh: `dot_zshrc`, `dot_zprofile`, dot_zshenv`, `dot_p10k.zsh`, `empty_dot_hushlogin`
-- SSH: `dot_ssh/*`
-- Git: `dot_gitconfig`
-- Yabai: `dot_config/yabai/yabairc`
-- Skhd: `dot_config/skhd/skhdrc`
-- Sketchybar: `dot_config/sketchybar/*`
-- Ghostty: `private_Library/private_Application\ Support/com.mitchellh.ghostty/config`, `dot_config/executable_tmux-startup.sh`
+| Tool | Configuration Files |
+|------------|-------------------|
+| Nvim | `dot_config/nvim/*` |
+| Tmux | `dot_tmux.conf` |
+| Zsh | `dot_zshrc`, `dot_zprofile`, `dot_zshenv`, `dot_p10k.zsh`, `empty_dot_hushlogin` |
+| SSH | `dot_ssh/*` |
+| Git | `dot_gitconfig` |
+| Yabai | `dot_config/yabai/yabairc` |
+| Skhd | `dot_config/skhd/skhdrc` |
+| Sketchybar | `dot_config/sketchybar/*` |
+| Ghostty | `private_Library/private_Application\ Support/com.mitchellh.ghostty/config`, `dot_config/executable_tmux-startup.sh` |
 
 #### Future Additions
 - [ ] Migrate the Ubuntu server to NixOS
