@@ -89,7 +89,8 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 3. Fork this repo and clone your fork to `$HOME/.local/share/chezmoi` on both machines. Set your age encryption key in `~/.config/chezmoi` on both machines. Update the SSH settings and files in the `dot_ssh` directory with your own, and make sure you are using the `--encrypt` flag with the `chezmoi add` command to hide secrets.
 4. Apply the dotfiles with `chezmoi apply`. If there are diffs, please analyze the diff before proceeding to prevent overwrites of important file content.
 5. Push a test commit to your fork, and upon opening any Zsh login shell the dotfiles should sync automatically. The sync is implemented in the `dot_zprofile` file.
-6. For Yabai, Skhd, and Sketchybar, please follow their respective documentation.
+6. Follow respective documentation for Yabai, Skhd, and Sketchybar.
+7. On MacOS, adjust system settings to auto-hide the top bar and dock.
 
 #### Future Additions
 - [ ] Migrate the Ubuntu server to NixOS
