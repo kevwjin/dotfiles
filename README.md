@@ -8,6 +8,8 @@ These dotfiles also include a `zoom-fullscreen` indicator powered by Yabai, Skhd
 <img src="SketchybarDemo.gif" height="300">
 &nbsp;
 
+On MacOS, the Ghostty terminal emulator is configured such that the `~/.config/tmux-startup.sh` script runs upon opening a new Ghostty window, prompting the user to enter a default tmux session locally on the Mac or remotely on the server. @kevwjin personally uses Tailscale to connect between his laptop and server, enabling him to work on his Ubuntu server remotely. The remote access capability is particularly valuable for handling compute-heavy workflows when his server's GPU is needed.
+
 Another feature is event-based syncing with remote repositories. When opening a Zsh login shell, the zprofile config executes the following sync operations.
 1. `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo.
 2. `update_nix` syncs dependencies by pulling and applying changes from the [dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
