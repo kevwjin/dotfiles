@@ -34,7 +34,7 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 
 1. Fork [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) and follow the corresponding README to install dotfile dependencies on both machines.
 2. Install [Tailscale](https://tailscale.com/) from the App Store on MacOS and from the apt package manager on Ubuntu. Setup Tailscale and SSH to allow local and remote access to your server from your laptop.
-3. Fork this repo and clone your fork to `$HOME/.local/share/chezmoi` on both machines. Set your age encryption key in ~/.config/chezmoi on both machines. Update the SSH settings and files in the `dot_ssh` directory with your own, ensuring you use the `--encrypt` flag with the `chezmoi add` command to hide secrets.
+3. Fork this repo and clone your fork to `$HOME/.local/share/chezmoi` on both machines. Set your age encryption key in `~/.config/chezmoi` on both machines. Update the SSH settings and files in the `dot_ssh` directory with your own, ensuring you use the `--encrypt` flag with the `chezmoi add` command to hide secrets.
 4. Apply the dotfiles with `chezmoi apply`. If there are diffs, please anaylze the diff before proceeding to prevent overwrites of important file contents.
 5. Push a test commit to your fork, and upon opening any Zsh login shell the dotfiles should sync automatically. The sync is implemented in the `dot_zprofile` file.
 6. For Yabai, Skhd, and Sketchybar, please follow their respective documentation.
