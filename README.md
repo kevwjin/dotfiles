@@ -1,3 +1,7 @@
+
+![DotfileScreenshot1](docs/DotfileScreenshot1.png)
+![DotfileScreenshot2](docs/DotfileScreenshot2.png)
+
 #### Intro
 
 This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, SketchyBar, and Ghostty), which with the exception of Yabai, Skhd, and SketchyBar, have package dependencies installable via the Nix flake in the [dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
