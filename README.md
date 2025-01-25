@@ -1,5 +1,4 @@
 
-![DotfileScreenshot1](docs/DotfileScreenshot1.png)
 ![DotfileScreenshot2](docs/DotfileScreenshot2.png)
 
 #### Intro
