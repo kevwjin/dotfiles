@@ -3,7 +3,7 @@
 
 #### Intro
 
-This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, SketchyBar, and Ghostty), which with the exception of Yabai, Skhd, and SketchyBar, have package dependencies installable via the Nix flake in the [dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
+This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, SketchyBar, and Ghostty), which with the exception of Yabai, Skhd, and SketchyBar, have package dependencies installable via the Nix flake in the [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo.
 
 [Chezmoi](https://www.chezmoi.io/) (pronounced /ʃeɪ mwa/ (shay-mwa)) is used for dotfile management. Chezmoi has conditional logic that applies configurations depending on the system, allowing the config to support **MacOS Sequoia** and **Ubuntu (Oracular Oriole)** operating systems. Chezmoi also allows declarative configuration of file attributes through file name prefixes. When applying the config on `chezmoi apply`, for instance, the `dot_<filename>` prefix is replaced with a leading `.` for the filename, and the `private_<filename>` prefix sets the 600 permission for the file. Chezmoi also has age encryption integration, where `chezmoi add --encrypt <filename>` automatically encrypts and manages the file.
 
@@ -24,7 +24,20 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/RemoteTmuxDemo.gif" height="300">
 &nbsp;
 
-- Event-based syncing with remote repositories: When opening a Zsh login shell, the `dot_zprofile` script executes the following sync operations: 1) `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo, and 2) `update_nix` syncs dependencies by pulling and applying changes from the [dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) repo. Consequently, the user profile environment is consistent across the personal MacOS laptop and Ubuntu server.
+- Event-based syncing with remote repositories: When opening a Zsh login shell, the `dot_zprofile` script executes the following sync operations: 1) `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo, and 2) `update_nix` syncs dependencies by pulling and applying changes from [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps). Consequently, the user profile environment is consistent across the personal MacOS laptop and Ubuntu server.
+
+#### Installation
+
+> :warning: **Warning:** Backup your files before attempting installation. @kevwjin assumes the reader has a high-level understanding of chezmoi and Nix.
+
+Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
+
+1. Fork [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps) and follow the corresponding README to install dotfile dependencies on both machines.
+2. Install [Tailscale](https://tailscale.com/) from the App Store on MacOS and from the apt package manager on Ubuntu. Setup Tailscale and SSH to allow local and remote access to your server from your laptop.
+3. Fork this repo and clone your fork to `$HOME/.local/share/chezmoi` on both machines. Set your age encryption key in ~/.config/chezmoi on both machines. Update the SSH settings and files in the `dot_ssh` directory with your own, ensuring you use the `--encrypt` flag with the `chezmoi add` command to hide secrets.
+4. Apply the dotfiles with `chezmoi apply`. If there are diffs, please anaylze the diff before proceeding to prevent overwrites of important file contents.
+5. Push a test commit to your fork, and upon opening any Zsh login shell the dotfiles should sync automatically. The sync is implemented in the `dot_zprofile` file.
+6. For Yabai, Skhd, and Sketchybar, please follow their respective documentation.
 
 #### Future Additions
 - [ ] Migrate the Ubuntu server to NixOS
