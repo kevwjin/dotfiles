@@ -1,5 +1,9 @@
 {{ if ne .chezmoi.os "darwin" -}}
 .config/tmux-startup.sh
+.config/yabai/yabairc
+.config/skhd/skhdrc
+.config/sketchybar/
+.config/sketchybar/**
 Library/
 Library/**
 {{ end -}}
@@ -10,3 +14,6 @@ chezmoi source-path ~/.ssh/authorized_keys
 .config/nix/.git
 .hushlogin
 LICENSE
+README.md
+docs/
+docs/**
