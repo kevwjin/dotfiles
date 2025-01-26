@@ -9,18 +9,22 @@ if [[ -z $P10K_INSTANT_PROMPT_LOADED ]]; then
   emulate zsh -c "$(direnv hook zsh)"
 fi
 
+eval "$(direnv hook zsh)"
+
 # configure custom themes directory
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 mkdir -p "$ZSH_CUSTOM/themes"
-# symlink p10k theme into $ZSH_CUSTOM/themes
-ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme)" \
+# symlink p10k theme into $ZSH_CUSTOM/themes (using head -n1 to get only the first match)
+ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme | head -n1)" \
        "$ZSH_CUSTOM/themes/powerlevel10k.zsh-theme"
 # disable wizard launch on each login
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+# set ZSH path
+NIX_OMZ_PATH="$(find /nix/store/*oh-my-zsh*/share/oh-my-zsh -maxdepth 0 | head -n 1)"
+export ZSH="$NIX_OMZ_PATH"
 # zsh theme
 ZSH_THEME="powerlevel10k"
-export ZSH="$(find /nix/store/*oh-my-zsh*/share/oh-my-zsh -maxdepth 0)"
-source "$ZSH/oh-my-zsh.sh"
+source "$NIX_OMZ_PATH/oh-my-zsh.sh"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # enable colorized output for terminal commands (e.g., ls)
