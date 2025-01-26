@@ -7,7 +7,7 @@ local function close_bracket()
     -- Probably inside a function call. Close it off.
     return '{<CR>})<Esc>O'
   else
-    return '{<CR>}<Esc>O'
+    return '{<CR>};<Esc>O'
   end
 end
 vim.keymap.set('i', '{<cr>', close_bracket, {expr=true})

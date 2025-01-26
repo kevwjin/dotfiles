@@ -35,6 +35,8 @@ return {
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+        opts.desc = "Show diagnostics under cursor"
+        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
       end,
     })
     -- disable virtual text (inline messages)
