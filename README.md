@@ -72,6 +72,20 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 
 - Event-based syncing with remote repositories: When opening a Zsh login shell, the `dot_zprofile` script executes the following sync operations: 1) `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo, and 2) `update_nix` syncs dependencies by pulling and applying changes from [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps). Consequently, the user profile environment is consistent across the personal MacOS laptop and Ubuntu server.
 
+#### Per-Tool Config Files
+
+| Tool | Configuration Files |
+|------------|-------------------|
+| Nvim | `dot_config/nvim/*` |
+| Tmux | `dot_tmux.conf` |
+| Zsh | `dot_zshrc`, `dot_zprofile`, `dot_zshenv`, `dot_p10k.zsh`, `empty_dot_hushlogin` |
+| SSH | `dot_ssh/*` |
+| Git | `dot_gitconfig` |
+| Yabai | `dot_config/yabai/yabairc` |
+| Skhd | `dot_config/skhd/skhdrc` |
+| Sketchybar | `dot_config/sketchybar/*` |
+| Ghostty | `private_Library/private_Application\ Support/com.mitchellh.ghostty/config`, `dot_config/executable_tmux-startup.sh` |
+
 #### Installation
 
 > :warning: **Warning:** Backup your files before attempting installation. @kevwjin assumes the reader has a high-level understanding of chezmoi and Nix.
@@ -86,20 +100,6 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 6. Push a test commit to your fork, and upon opening any Zsh login shell the dotfiles should sync automatically. The sync is implemented in the `dot_zprofile` file.
 7. Follow respective documentation for Yabai, Skhd, and Sketchybar.
 8. On MacOS, adjust system settings to auto-hide the top bar and dock.
-
-#### Per-Tool Config Files
-
-| Tool | Configuration Files |
-|------------|-------------------|
-| Nvim | `dot_config/nvim/*` |
-| Tmux | `dot_tmux.conf` |
-| Zsh | `dot_zshrc`, `dot_zprofile`, `dot_zshenv`, `dot_p10k.zsh`, `empty_dot_hushlogin` |
-| SSH | `dot_ssh/*` |
-| Git | `dot_gitconfig` |
-| Yabai | `dot_config/yabai/yabairc` |
-| Skhd | `dot_config/skhd/skhdrc` |
-| Sketchybar | `dot_config/sketchybar/*` |
-| Ghostty | `private_Library/private_Application\ Support/com.mitchellh.ghostty/config`, `dot_config/executable_tmux-startup.sh` |
 
 #### Future Additions
 - [ ] Migrate the Ubuntu server to NixOS
