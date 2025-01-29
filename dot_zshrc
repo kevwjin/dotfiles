@@ -1,12 +1,12 @@
 if [[ -z $P10K_INSTANT_PROMPT_LOADED ]]; then
   # setup dir env with direnv
-  emulate zsh -c "$(direnv export zsh)"
+  # emulate zsh -c "$(direnv export zsh)"
   # prompt user while shell loading
     # define cache path
   CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
   [[ -r "$CACHE_FILE" ]] && source "$CACHE_FILE"
   # enable direnv hook (e.g., when changing dir)
-  emulate zsh -c "$(direnv hook zsh)"
+  # emulate zsh -c "$(direnv hook zsh)"
 fi
 
 eval "$(direnv hook zsh)"
