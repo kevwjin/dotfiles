@@ -11,7 +11,7 @@ return {
     -- configure treesitter
     treesitter.setup({
       highlight = {
-        enable = true,
+        enable = false,
       },
       indent = {
         enable = true,
