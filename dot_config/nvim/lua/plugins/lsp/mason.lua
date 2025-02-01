@@ -34,6 +34,7 @@ return {
         "dockerls",                          -- dockerfile
         "docker_compose_language_service",   -- docker compose
         "nil_ls",                            -- nix
+        "dhall_lsp_server"
       },
     })
 
