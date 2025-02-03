@@ -102,7 +102,7 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 8. On MacOS, adjust system settings to auto-hide the top bar and dock.
 
 #### Future Additions
+- [ ] Add script so that when moving a window to a different space, automatically focus on that window when changing to that space
 - [ ] Migrate the Ubuntu server to NixOS
-- [ ] Add Github Actions -> GitHub Webhook -> GitHub Fetch pipeline to fetch from GitHub repos only when they have new changes
-- [ ] Add NAS RAID10 config to server with regular backups to AWS Deep Glacier
+- [ ] Add cron to server for regular backups to SSDs and AWS Deep Glacier
 - [ ] Add Ansible playbook to automate install process of Yabai, Skhd, and Sketchybar with Homebrew
