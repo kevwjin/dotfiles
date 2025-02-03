@@ -21,7 +21,8 @@ selection-background = #d0d0d0
 selection-foreground = #616060
 
 command = ~/.config/tmux-startup.sh
-copy-on-select = true
+confirm-close-surface = false
+copy-on-select = clipboard
 cursor-style = block
 cursor-style-blink = false
 font-feature = -calt
