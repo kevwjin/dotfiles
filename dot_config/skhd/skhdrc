@@ -1,3 +1,7 @@
+# close window
+# (behavior needed b/c default Cmd-w behavior is different for each application)
+ctrl - x : yabai -m window --close
+
 # swap windows
 ctrl + shift - h : yabai -m window --swap west
 ctrl + shift - j : yabai -m window --swap south
@@ -57,12 +61,16 @@ alt - n : \
     yabai -m space --focus "${index}" && \
     ~/stow/laptop/dot-config/sketchybar/plugins/fullscreen_indicator.sh
 
-# delete focused space
+# delete focused space and its windows
 alt - q : \
-  index="$(yabai -m query --spaces | jq '.[] | select(."has-focus").index')" && \
-  if [ $index -gt 1 ]; then \
-    newindex=$(expr $index - 1); \
-  else \
-    newindex=$(expr $index + 1); \
-  fi && \
-  yabai -m space --focus "${newindex}" && yabai -m space "${index}" --destroy
+    index="$(yabai -m query --spaces | jq '.[] | select(."has-focus").index')" && \
+    if [ $index -gt 1 ]; then \
+        newindex=$(expr $index - 1); \
+    else \
+        newindex=$(expr $index + 1); \
+    fi && \
+    for window in $(yabai -m query --windows --space "${index}" | jq '.[].id'); do \
+        yabai -m window "${window}" --close; \
+    done && \
+    yabai -m space --focus "${newindex}" && \
+    yabai -m space "${index}" --destroy
