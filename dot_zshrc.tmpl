@@ -15,7 +15,7 @@ eval "$(direnv hook zsh)"
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 mkdir -p "$ZSH_CUSTOM/themes"
 # symlink p10k theme into $ZSH_CUSTOM/themes (using head -n1 to get only the first match)
-ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme | head -n1)" \
+ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme | head -n 1)" \
        "$ZSH_CUSTOM/themes/powerlevel10k.zsh-theme"
 # disable wizard launch on each login
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
@@ -28,7 +28,12 @@ source "$NIX_OMZ_PATH/oh-my-zsh.sh"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # enable colorized output for terminal commands (e.g., ls)
+{{ if eq .chezmoi.os "darwin" -}}
+alias ls='/nix/store/5r1vifkx3r6frjv7ry294wr5ripyfcq8-coreutils-9.5/bin/ls --color=auto'
+{{ end -}}
+{{ if eq .chezmoi.os "linux" -}}
 alias ls='ls --color=auto'
+{{ end -}}
 # set Emacs bindings for command line
 bindkey -e
 
