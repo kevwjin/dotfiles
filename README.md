@@ -88,7 +88,8 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 
 #### Installation
 
-> [!Warning] Backup your files before attempting installation. @kevwjin assumes the reader has a high-level understanding of chezmoi and Nix.
+> > [!WARNING]
+> Backup your files before attempting installation. @kevwjin assumes the reader has a high-level understanding of chezmoi and Nix.
 
 Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 
