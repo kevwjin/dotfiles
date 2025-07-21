@@ -60,7 +60,7 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/SketchybarDemo.gif" height="300">
 &nbsp;
 
-- On MacOS, the Ghostty terminal emulator startup script defined at `dot_config/executable_tmux-startup.sh` runs upon opening a new Ghostty window, prompting the user to enter a default tmux session locally on the Mac or remotely on the server. @kevwjin personally uses Tailscale to connect between his laptop and server, enabling him to work on his Ubuntu server remotely. The remote access capability is particularly valuable for handling compute-heavy workflows when his server's GPU is needed.
+- On MacOS, the Ghostty terminal emulator startup script defined at `dot_config/executable_tmux-startup.sh` runs upon opening a new Ghostty window, prompting the user to enter a default tmux session locally on the Mac or remotely on the server. I personally uses Tailscale to connect between his laptop and server, enabling him to work on his Ubuntu server remotely. The remote access capability is particularly valuable for handling compute-heavy workflows when his server's GPU is needed.
 
 &nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/LocalTmuxDemo.gif" height="300">
@@ -89,7 +89,7 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 #### Installation
 
 > [!WARNING]
-> Backup your files before attempting installation. @kevwjin assumes the reader has a high-level understanding of chezmoi and Nix.
+> Backup your files before attempting installation. I assume the reader has a high-level understanding of chezmoi and Nix.
 
 Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 
