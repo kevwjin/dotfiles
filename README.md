@@ -57,17 +57,17 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 - The `zoom-fullscreen` indicator is powered by Yabai, Skhd, and Yabai. The indicator displays when any window in the workspace is in Yabai's zoom-fullscreen mode. Unlike MacOS native fullscreen, zoom-fullscreen maintains window navigation capabilities--you can switch between windows while keeping the focused window visible on top. The GIF illustrates toggling zoom-fullscreen for individual and multiple windows, as well as restoring them to normal size.
 
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/SketchybarDemo.gif" height="300">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/SketchybarDemo.gif" width="300" height="300">
 &nbsp;
 
 - On MacOS, the Ghostty terminal emulator startup script defined at `dot_config/executable_tmux-startup.sh` runs upon opening a new Ghostty window, prompting the user to enter a default tmux session locally on the Mac or remotely on the server. I personally uses Tailscale to connect between his laptop and server, enabling him to work on his Ubuntu server remotely. The remote access capability is particularly valuable for handling compute-heavy workflows when his server's GPU is needed.
 
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/LocalTmuxDemo.gif" height="300">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/LocalTmuxDemo.gif" width="300" height="300">
 &nbsp;
 
 &nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/RemoteTmuxDemo.gif" height="300">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="docs/RemoteTmuxDemo.gif" width="300" height="300">
 &nbsp;
 
 - Event-based syncing with remote repositories: When opening a Zsh login shell, the `dot_zprofile` script executes the following sync operations: 1) `update_chezmoi` syncs dotfiles by pulling and applying changes from this repo, and 2) `update_nix` syncs dependencies by pulling and applying changes from [kevwjin/dotfile-deps](https://www.github.com/kevwjin/dotfile-deps). Consequently, the user profile environment is consistent across the personal MacOS laptop and Ubuntu server.
