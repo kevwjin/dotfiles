@@ -47,11 +47,17 @@ vim.cmd([[
   autocmd FileType json setlocal shiftwidth=4 tabstop=4
 ]])
 
+-- set C indentation to 4 spaces
+vim.cmd([[
+  autocmd FileType c setlocal shiftwidth=4 tabstop=4 softtabstop=4
+]])
+
 -- disable automatic comments on newline
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
 -- allow copy and paste to and from nvim
-vim.opt.clipboard:append("unnamedplus")
+vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard:append("unnamedplus")
 
 -- disable swap files
 vim.opt.swapfile = false
