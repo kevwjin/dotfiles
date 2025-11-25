@@ -23,7 +23,7 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "astro",                             -- astro framework
-        "ts_ls",                             -- typescript/javascript
+        "tsserver",                          -- typescript/javascript
         "cssls",                             -- css
         "html",                              -- html
         "bashls",                            -- bash
@@ -34,7 +34,6 @@ return {
         "dockerls",                          -- dockerfile
         "docker_compose_language_service",   -- docker compose
         "nil_ls",                            -- nix
-        "dhall_lsp_server"
       },
     })
 
