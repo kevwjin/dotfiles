@@ -9,7 +9,21 @@ if [[ -z $P10K_INSTANT_PROMPT_LOADED ]]; then
   # emulate zsh -c "$(direnv hook zsh)"
 fi
 
+{{ if eq .chezmoi.os "darwin" -}}
+export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
+{{ end -}}
+# ensure Nix binaries take precedence
+export PATH="$HOME/.nix-profile/bin:$PATH"
+export PATH="/nix/var/nix/profiles/default/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
 eval "$(direnv hook zsh)"
+_direnv_hook() {
+  eval "$(direnv export zsh 2> >(egrep -v -e '^....direnv: export' >&2))"
+};
+# Now that PATH is set, we can use direnv
+# eval "$(direnv hook zsh)"
 
 # configure custom themes directory
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
@@ -28,12 +42,7 @@ source "$NIX_OMZ_PATH/oh-my-zsh.sh"
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # enable colorized output for terminal commands (e.g., ls)
-{{ if eq .chezmoi.os "darwin" -}}
-alias ls='/nix/store/5r1vifkx3r6frjv7ry294wr5ripyfcq8-coreutils-9.5/bin/ls --color=auto'
-{{ end -}}
-{{ if eq .chezmoi.os "linux" -}}
 alias ls='ls --color=auto'
-{{ end -}}
 # set Emacs bindings for command line
 bindkey -e
 
@@ -48,3 +57,13 @@ compdef _git g=git
 alias python='python3'
 # command combining cd and ls
 cl() { cd "$@" && ls; }
+
+{{ if eq .chezmoi.os "darwin" -}}
+# pnpm
+export PNPM_HOME="/Users/kevwjin/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+{{ end -}}
