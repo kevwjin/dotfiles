@@ -1,7 +1,8 @@
-sudo yabai --load-sa
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-
 #!/usr/bin/env sh
+
+# Load the scripting addition
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 
 # -- global --------------------------------------------------------------------
 yabai -m config active_window_opacity       1.0
@@ -13,26 +14,17 @@ yabai -m config window_zoom_persist         off
 yabai -m config split_ratio                 0.5
 yabai -m config split_type                  auto
 yabai -m config layout                      bsp
-yabai -m config top_padding                 10
-yabai -m config bottom_padding              10
-yabai -m config left_padding                10 
-yabai -m config right_padding               10 
+yabai -m config top_padding                 8 
+yabai -m config bottom_padding              8 
+yabai -m config left_padding                8  
+yabai -m config right_padding               8  
 yabai -m config window_gap                  10 
 
 # -- rules ---------------------------------------------------------------------
 # don't manage apps by default
 yabai -m rule --add app=".*" manage=off
 # managed apps
-yabai -m rule --add label="Firefox" app="^Firefox$" manage=on
-yabai -m rule --add label="iTerm" app="^iTerm2$" manage=on
-yabai -m rule --add label="Arc" app="^Arc$" manage=on
 yabai -m rule --add label="Ghostty" app="^Ghostty$" manage=on
-yabai -m rule --add label="Obsidian" app="^Obsidian$" manage=on
-yabai -m rule --add label="Reeder" app="^Reeder$" manage=on
-yabai -m rule --add label="Discord" app="^Discord$" manage=on
-yabai -m rule --add label="Messenger" app="^Messenger$" manage=on
-yabai -m rule --add label="Messages" app="^Messages$" manage=on
-yabai -m rule --add label="Zoom" app="^zoom.us$" manage=on
 
 # --- signals ------------------------------------------------------------------
 # signal sketchybar when window zoom state changes
