@@ -20,7 +20,6 @@ cursor-color = #00bbd3
 selection-background = #d0d0d0
 selection-foreground = #616060
 
-command = ~/.config/tmux-startup.sh
 confirm-close-surface = false
 copy-on-select = clipboard
 cursor-style = block
@@ -30,5 +29,4 @@ font-feature = -dlig
 font-feature = -liga
 font-size = 18
 shell-integration-features = no-cursor
-macos-titlebar-style = hidden
 mouse-hide-while-typing = true
