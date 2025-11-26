@@ -8,6 +8,12 @@ CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # emulate zsh -c "$(direnv hook zsh)"
 export P10K_INSTANT_PROMPT_LOADED=1
 
+# ensure nix and local bins are on PATH before running updates;
+# update_chezmoi runs early
+export PATH="$HOME/.nix-profile/bin:$PATH"
+export PATH="/nix/var/nix/profiles/default/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
 # check and update chezmoi config
 update_chezmoi() {
     local repo_path="$HOME/.local/share/chezmoi"
