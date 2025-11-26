@@ -53,7 +53,11 @@ This repo contains config files (for Nvim, Tmux, Zsh, SSH, Git, Yabai, Skhd, Ske
 
 [Chezmoi](https://www.chezmoi.io/) (pronounced /ʃeɪ mwa/ (shay-mwa)) is used for dotfile management. Chezmoi has conditional logic that applies configurations depending on the system, allowing the config to support **MacOS Sequoia** and **Ubuntu (Oracular Oriole)** operating systems. Chezmoi also allows declarative configuration of file attributes through file name prefixes. When applying the config on `chezmoi apply`, for instance, the `dot_<filename>` prefix is replaced with a leading `.` for the filename, and the `private_<filename>` prefix sets the 600 permission for the file. Chezmoi also has age encryption integration, where `chezmoi add --encrypt <filename>` automatically encrypts and manages the file.
 
-#### Unique Features
+#### Unique Features (Retired)
+
+> [!WARNING]
+> Note that I no longer use these features, so they will no longer be updated.
+
 - The `zoom-fullscreen` indicator is powered by Yabai, Skhd, and Yabai. The indicator displays when any window in the workspace is in Yabai's zoom-fullscreen mode. Unlike MacOS native fullscreen, zoom-fullscreen maintains window navigation capabilities--you can switch between windows while keeping the focused window visible on top. The GIF illustrates toggling zoom-fullscreen for individual and multiple windows, as well as restoring them to normal size.
 
 &nbsp;
@@ -106,4 +110,3 @@ Hardware requirements: MacOS Sequoia laptop and Ubuntu Oracular Oriole server
 - [ ] Add script so that when moving a window to a different space, automatically focus on that window when changing to that space
 - [ ] Migrate the Ubuntu server to NixOS
 - [ ] Add cron to server for regular backups to SSDs and AWS Deep Glacier
-- [ ] Add Ansible playbook to automate install process of Yabai, Skhd, and Sketchybar with Homebrew
