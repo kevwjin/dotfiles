@@ -28,11 +28,11 @@ ctrl + alt - l : \
 # maximize focused window
 ctrl - m : yabai -m window --toggle zoom-fullscreen
 
-# move window focus
-ctrl - h : yabai -m window --focus west
-ctrl - j : yabai -m window --focus south
-ctrl - k : yabai -m window --focus north
-ctrl - l : yabai -m window --focus east
+# move window focus with wrap-around
+ctrl - h : yabai -m window --focus west || yabai -m window --focus east
+ctrl - j : yabai -m window --focus south || yabai -m window --focus north
+ctrl - k : yabai -m window --focus north || yabai -m window --focus south
+ctrl - l : yabai -m window --focus east || yabai -m window --focus west
 
 # send window to a space 
 shift + alt - 1 : yabai -m window --space 1

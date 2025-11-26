@@ -3,6 +3,7 @@ PLUGIN_DIR="$HOME/.config/sketchybar/plugins"
 # Bar Configuration
 sketchybar --add event window_changed
 sketchybar --bar height=16        \
+                 y_offset=28      \
                  position=top     \
                  padding_left=3   \
                  color=0x00000000
