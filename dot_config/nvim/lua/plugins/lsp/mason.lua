@@ -23,7 +23,6 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "astro",                             -- astro framework
-        "tsserver",                          -- typescript/javascript
         "cssls",                             -- css
         "html",                              -- html
         "bashls",                            -- bash
