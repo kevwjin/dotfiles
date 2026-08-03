@@ -8,11 +8,15 @@ CACHE_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 # emulate zsh -c "$(direnv hook zsh)"
 export P10K_INSTANT_PROMPT_LOADED=1
 
-# ensure nix and local bins are on PATH before running updates;
-# update_chezmoi runs early
+{{ if eq .chezmoi.os "darwin" -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{ end -}}
+
+# ensure Nix and local bins are available to login shells
 export PATH="$HOME/.nix-profile/bin:$PATH"
 export PATH="/nix/var/nix/profiles/default/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.elan/bin:$PATH"
 
 # check and update chezmoi config
 update_chezmoi() {
@@ -72,8 +76,15 @@ check_git_updates() {
 }
 
 # Run the concurrent updates
-check_git_updates
+# check_git_updates
 
 {{ if eq .chezmoi.os "darwin" -}}
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+export PATH="$PATH:$HOME/.aztec/bin"
 {{ end -}}
