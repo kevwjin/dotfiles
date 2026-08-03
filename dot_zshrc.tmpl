@@ -57,13 +57,3 @@ compdef _git g=git
 alias python='python3'
 # command combining cd and ls
 cl() { cd "$@" && ls; }
-
-{{ if eq .chezmoi.os "darwin" -}}
-# pnpm
-export PNPM_HOME="/Users/kevwjin/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-{{ end -}}
