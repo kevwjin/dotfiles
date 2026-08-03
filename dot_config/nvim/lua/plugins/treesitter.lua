@@ -15,6 +15,7 @@ return {
       },
       indent = {
         enable = true,
+        disable = { 'python' },
       },
       -- enable autotagging (w/ nvim-ts-autotag plugin)
       autotag = {

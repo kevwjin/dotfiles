@@ -1,70 +1,92 @@
 return {
-  'neovim/nvim-lspconfig',
-  -- tag = 'v0.1.7',  -- Use a version compatible with the older Mason versions
-  event = { 'BufReadPre', 'BufNewFile' },
+  "neovim/nvim-lspconfig",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    -- 'williamboman/mason.nvim',
-    -- 'williamboman/mason-lspconfig.nvim',
-    -- sync update of imports
-    { 'antosha417/nvim-lsp-file-operations', config = true },
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
-    local lspconfig = require('lspconfig')
-    local mason_lspconfig = require('mason-lspconfig')
+    local lsp_windows = require("lspconfig.ui.windows")
     local keymap = vim.keymap
 
-    -- LSP keymaps
+    local bordered_float = { border = "single" }
+
+    lsp_windows.default_options.border = bordered_float.border
+
+    vim.lsp.handlers["textDocument/hover"] =
+      vim.lsp.with(vim.lsp.handlers.hover, bordered_float)
+
+    vim.lsp.handlers["textDocument/signatureHelp"] =
+      vim.lsp.with(vim.lsp.handlers.signature_help, bordered_float)
+
+    -- rust-analyzer is provided by your Nix devshell, not Mason.
+    vim.lsp.enable("rust_analyzer")
+
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
+
         local opts = { buffer = ev.buf, silent = true }
 
         opts.desc = "Show LSP references"
         keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+
         opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+        keymap.set("n", "gd", function()
+          vim.lsp.buf.definition({ reuse_win = true })
+        end, opts)
+
         opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+        keymap.set("n", "gi", function()
+          vim.lsp.buf.implementation({ reuse_win = true })
+        end, opts)
+
         opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+        keymap.set("n", "gt", function()
+          vim.lsp.buf.type_definition({ reuse_win = true })
+        end, opts)
+
+        opts.desc = "Show hover documentation"
+        keymap.set("n", "K", function()
+          vim.lsp.buf.hover(bordered_float)
+        end, opts)
+
         opts.desc = "See available code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
         opts.desc = "Smart rename"
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+
         opts.desc = "Show diagnostics under cursor"
         keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
       end,
     })
 
-    -- disable inline messages (virtual text)
     vim.diagnostic.config({
       virtual_text = false,
-      -- keep gutter signs
       signs = true,
-      -- keep underlines
       underline = true,
-    })
-
-    mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
-      function(server_name)
-        lspconfig[server_name].setup({})
-      end,
-      -- lua handler
-      ["lua_ls"] = function()
-        lspconfig["lua_ls"].setup({
-          settings = {
-            Lua = {
-              -- have lsp recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-            },
-          },
-        })
-      end,
+      float = {
+        border = bordered_float.border,
+      },
     })
   end,
 }
