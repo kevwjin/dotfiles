@@ -23,11 +23,12 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "astro",                             -- astro framework
+        -- "tsserver",                          -- typescript/javascript
+        "gopls",                             -- go
         "cssls",                             -- css
         "html",                              -- html
         "bashls",                            -- bash
         "clangd",                            -- c/c++
-        "pyright",                           -- python
         "lua_ls",                            -- lua
         "jdtls",                             -- java
         "dockerls",                          -- dockerfile
@@ -36,6 +37,6 @@ return {
       },
     })
 
-    require('lspconfig').zls.setup{}
+    vim.lsp.enable('zls')
   end,
 }
