@@ -4,13 +4,11 @@ vim.g.mapleader = ','
 
 -- remove netrw banner
 vim.g.netrw_banner = 0
--- set floating window background color
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'NONE' })
 
 -- enable gutter
 vim.opt.signcolumn = 'yes'
--- draw vertical line at 80th column
-vim.opt.colorcolumn = '80'
+-- draw vertical line at 100th column
+vim.opt.colorcolumn = '100'
 -- set block cursor in all modes
 vim.cmd([[set guicursor=a:block"]])
 
@@ -51,6 +49,16 @@ vim.cmd([[
 vim.cmd([[
   autocmd FileType c setlocal shiftwidth=4 tabstop=4 softtabstop=4
 ]])
+
+-- trim trailing whitespace (keeps paragraph motions working)
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local view = vim.fn.winsaveview()
+    vim.cmd([[keeppatterns %s/\s\+$//e]])
+    vim.fn.winrestview(view)
+  end,
+})
 
 -- disable automatic comments on newline
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
