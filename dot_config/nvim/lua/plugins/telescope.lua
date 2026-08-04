@@ -10,6 +10,9 @@ return {
     telescope.setup({
       defaults = {
         path_display = { 'smart' },
+        preview = {
+          treesitter = false,
+        },
         borderchars = {
           prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└"},
           results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
