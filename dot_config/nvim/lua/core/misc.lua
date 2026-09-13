@@ -41,9 +41,9 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 -- set JSON indentation to 4 spaces
-vim.cmd([[
-  autocmd FileType json setlocal shiftwidth=4 tabstop=4
-]])
+-- vim.cmd([[
+--   autocmd FileType json setlocal shiftwidth=4 tabstop=4
+-- ]])
 
 -- set C indentation to 4 spaces
 vim.cmd([[
