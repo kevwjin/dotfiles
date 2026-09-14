@@ -18,6 +18,12 @@ export PATH="/nix/var/nix/profiles/default/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+{{ if eq .chezmoi.os "linux" -}}
+# Ensure Nix-provided runtimes are on the linker path (needed for numpy C extensions).
+export LD_LIBRARY_PATH="/nix/store/xm08aqdd7pxcdhm0ak6aqb1v7hw5q6ri-gcc-14.3.0-lib/lib:/nix/store/2k9k3q1vk8z6w7743k6nb22vnb05xv06-zlib-1.3.1/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+{{ end -}}
 
 export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
 eval "$(direnv hook zsh)"
@@ -28,21 +34,31 @@ _direnv_hook() {
 # configure custom themes directory
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
 mkdir -p "$ZSH_CUSTOM/themes"
-# symlink p10k theme into $ZSH_CUSTOM/themes (using head -n1 to get only the first match)
-ln -sf "$(find /nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme | head -n 1)" \
-       "$ZSH_CUSTOM/themes/powerlevel10k.zsh-theme"
+# Use the Nix-provided prompt and shell framework when the store is mounted.
+P10K_THEME_PATHS=(/nix/store/*powerlevel10k*/share/zsh-powerlevel10k/powerlevel10k.zsh-theme(N))
+P10K_THEME_PATH="${P10K_THEME_PATHS[1]:-}"
+if [[ -n "$P10K_THEME_PATH" ]]; then
+  ln -sf "$P10K_THEME_PATH" "$ZSH_CUSTOM/themes/powerlevel10k.zsh-theme"
+fi
 # disable wizard launch on each login
 export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 # set ZSH path
-NIX_OMZ_PATH="$(find /nix/store/*oh-my-zsh*/share/oh-my-zsh -maxdepth 0 | head -n 1)"
-export ZSH="$NIX_OMZ_PATH"
-# zsh theme
-ZSH_THEME="powerlevel10k"
-source "$NIX_OMZ_PATH/oh-my-zsh.sh"
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+NIX_OMZ_PATHS=(/nix/store/*oh-my-zsh*/share/oh-my-zsh(N/))
+NIX_OMZ_PATH="${NIX_OMZ_PATHS[1]:-}"
+if [[ -f "$NIX_OMZ_PATH/oh-my-zsh.sh" ]]; then
+  export ZSH="$NIX_OMZ_PATH"
+  ZSH_THEME="powerlevel10k"
+  source "$NIX_OMZ_PATH/oh-my-zsh.sh"
+  [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+fi
+unset P10K_THEME_PATHS NIX_OMZ_PATHS
 
 # enable colorized output for terminal commands (e.g., ls)
-alias ls='ls --color=auto'
+if ls --color=auto -d . >/dev/null 2>&1; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
 # set Emacs bindings for command line
 bindkey -e
 

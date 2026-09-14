@@ -6,11 +6,9 @@
   cm = commit
   co = checkout
 
-{{ if eq .profile "work" -}}
 [credential "https://github.com"]
-  helper =
-  helper = !/Users/kevwjin/.nix-profile/bin/gh auth git-credential
+    helper =
+    helper = !/home/kevwjin/.nix-profile/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-  helper =
-  helper = !/Users/kevwjin/.nix-profile/bin/gh auth git-credential
-{{ end -}}
+    helper =
+    helper = !/home/kevwjin/.nix-profile/bin/gh auth git-credential

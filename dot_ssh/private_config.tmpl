@@ -9,9 +9,10 @@ Host server
     Port 22
     # ghostty-256 or something not supported on Ubuntu server
     SetEnv TERM=xterm-256color
-    LocalForward 8888 localhost:8888
-    LocalForward 3000 localhost:3000
-    LocalForward 4321 localhost:4321
+    SendEnv TERM_PROGRAM
+    # LocalForward 8888 localhost:8888
+    # LocalForward 3000 localhost:3000
+    # LocalForward 4321 localhost:4321
     IdentityAgent none
 
 Host *
