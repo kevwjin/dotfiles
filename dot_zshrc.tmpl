@@ -16,16 +16,14 @@ export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
 export PATH="$HOME/.nix-profile/bin:$PATH"
 export PATH="/nix/var/nix/profiles/default/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
-if (( $+commands[direnv] )); then
-  export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
-  eval "$(direnv hook zsh)"
-  _direnv_hook() {
-    eval "$(direnv export zsh 2> >(grep -Ev '^....direnv: export' >&2))"
-  }
-fi
-# Now that PATH is set, we can use direnv
-# eval "$(direnv hook zsh)"
+export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
+eval "$(direnv hook zsh)"
+_direnv_hook() {
+  eval "$(direnv export zsh 2> >(egrep -v -e '^....direnv: export' >&2))"
+};
 
 # configure custom themes directory
 export ZSH_CUSTOM="$HOME/.oh-my-zsh-custom"
@@ -61,11 +59,15 @@ bindkey -e
 # aliases
 alias cm='chezmoi'
 alias nv='nvim'
+alias tm='tmux'
 alias g='git'
+alias t='tree -L 3'
 # Load completion for git
 autoload -Uz compinit && compinit
 # Make git completion work with g alias
 compdef _git g=git
 alias python='python3'
+alias pn='pnpm'
+alias lg='lazygit'
 # command combining cd and ls
 cl() { cd "$@" && ls; }

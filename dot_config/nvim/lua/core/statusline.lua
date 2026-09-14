@@ -7,3 +7,5 @@ vim.opt.statusline:append('%F ')
 vim.opt.statusline:append('%#error#%{&paste?"[paste]":""}%*')
 -- left/right separator
 vim.opt.statusline:append('%=')
+-- column number
+vim.opt.statusline:append('%c')
