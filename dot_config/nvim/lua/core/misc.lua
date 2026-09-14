@@ -2,6 +2,9 @@
 -- * leader mapping must be before require statement
 vim.g.mapleader = ','
 
+-- border on all floats (applies globally including plugin floats)
+vim.o.winborder = 'single'
+
 -- remove netrw banner
 vim.g.netrw_banner = 0
 
