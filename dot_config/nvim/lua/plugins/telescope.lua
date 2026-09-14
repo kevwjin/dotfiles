@@ -10,6 +10,9 @@ return {
     telescope.setup({
       defaults = {
         path_display = { 'smart' },
+        preview = {
+          treesitter = false,
+        },
         borderchars = {
           prompt = { "─", "│", "─", "│", "┌", "┐", "┘", "└"},
           results = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
@@ -31,28 +34,23 @@ return {
       return git_root
     end
 
-    local function git_root_search_dirs()
+    local function live_grep_git_tracked_files()
       local git_root = git_root_dir()
+
       if git_root == nil then
-        return nil
+        builtin.live_grep()
+        return
       end
 
-      return { git_root }
-    end
-
-    local function exclude_gitignore()
-      return { '--no-ignore', '--hidden', '--glob', '!.gitignore' }
-    end
-
-    local function exclude_docs_dirs()
-      return { '!docs/**', '!**/docs/**' }
-    end
-
-    local function live_grep_git_tracked_files()
       builtin.live_grep({
-        additional_args = exclude_gitignore,
-        search_dirs = git_root_search_dirs(),
-        glob_pattern = exclude_docs_dirs(),
+        cwd = git_root,
+        vimgrep_arguments = {
+          'git',
+          'grep',
+          '--line-number',
+          '--column',
+          '--color=never',
+        },
       })
     end
 
@@ -79,13 +77,27 @@ return {
 
     local function grep_git_tracked_word()
       local search = current_token()
+      local git_root = git_root_dir()
+
+      if git_root == nil then
+        builtin.grep_string({
+          search = search,
+          use_regex = false,
+        })
+        return
+      end
 
       builtin.grep_string({
         search = search,
         use_regex = false,
-        additional_args = exclude_gitignore,
-        search_dirs = git_root_search_dirs(),
-        glob_pattern = exclude_docs_dirs(),
+        cwd = git_root,
+        vimgrep_arguments = {
+          'git',
+          'grep',
+          '--line-number',
+          '--column',
+          '--color=never',
+        },
       })
     end
 
@@ -100,7 +112,7 @@ return {
       builtin.find_files({ cwd = git_root_dir() })
     end, { desc = 'Search for file names under project dir' })
     keymap.set('n', '<leader>fp', live_grep_git_tracked_files,
-      { desc = 'Search for string in repo files' })
+      { desc = 'Search for string in git-tracked repo files' })
     keymap.set('n', '<leader>fs', builtin.buffers,
       { desc = 'Search for file names in open buffers' })
     keymap.set('n', '<leader>fw', grep_git_tracked_word,
@@ -109,5 +121,7 @@ return {
       { desc = 'Search for file names in file history' })
     keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find,
       { desc = 'Search for string in current buffer contents' })
+    keymap.set('n', '<leader>fh', builtin.git_status,
+      { desc = 'Search changed files across repo' })
   end,
 }

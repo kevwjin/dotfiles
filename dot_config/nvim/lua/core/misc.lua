@@ -2,6 +2,9 @@
 -- * leader mapping must be before require statement
 vim.g.mapleader = ','
 
+-- border on all floats (applies globally including plugin floats)
+vim.o.winborder = 'single'
+
 -- remove netrw banner
 vim.g.netrw_banner = 0
 
@@ -41,9 +44,9 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 -- set JSON indentation to 4 spaces
-vim.cmd([[
-  autocmd FileType json setlocal shiftwidth=4 tabstop=4
-]])
+-- vim.cmd([[
+--   autocmd FileType json setlocal shiftwidth=4 tabstop=4
+-- ]])
 
 -- set C indentation to 4 spaces
 vim.cmd([[
