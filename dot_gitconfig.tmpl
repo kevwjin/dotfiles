@@ -5,3 +5,10 @@
   st = status
   cm = commit
   co = checkout
+
+[credential "https://github.com"]
+    helper =
+    helper = !/home/kevwjin/.nix-profile/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper =
+    helper = !/home/kevwjin/.nix-profile/bin/gh auth git-credential
