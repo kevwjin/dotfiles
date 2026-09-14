@@ -50,11 +50,15 @@ bindkey -e
 # aliases
 alias cm='chezmoi'
 alias nv='nvim'
+alias tm='tmux'
 alias g='git'
+alias t='tree -L 3'
 # Load completion for git
 autoload -Uz compinit && compinit
 # Make git completion work with g alias
 compdef _git g=git
 alias python='python3'
+alias pn='pnpm'
+alias lg='lazygit'
 # command combining cd and ls
 cl() { cd "$@" && ls; }
