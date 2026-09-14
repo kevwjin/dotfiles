@@ -37,7 +37,8 @@ return {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client then
+        -- Lean's semantic tokens provide much of its useful highlighting.
+        if client and client.name ~= "leanls" then
           client.server_capabilities.semanticTokensProvider = nil
         end
 
