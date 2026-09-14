@@ -5,3 +5,12 @@
   st = status
   cm = commit
   co = checkout
+
+{{ if eq .profile "work" -}}
+[credential "https://github.com"]
+  helper =
+  helper = !/Users/kevwjin/.nix-profile/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+  helper =
+  helper = !/Users/kevwjin/.nix-profile/bin/gh auth git-credential
+{{ end -}}
